@@ -1,11 +1,10 @@
 "use strict";
-let a = 0, b = 0, c = 0, d = 0;
+let rows = [0, 0, 0, 0];
 let activePlayer = 1;
 function fillRows() {
-    a = parseInt(prompt("Enter amount for Row A: "));
-    b = parseInt(prompt("Enter amount for Row B: "));
-    c = parseInt(prompt("Enter amount for Row C: "));
-    d = parseInt(prompt("Enter amount for Row D: "));
+    for (let i = 0; i < rows.length; i++) {
+        rows[i] = parseInt(prompt("Enter amount for Row " + (i + 1) + ":"));
+    }
     playGame();
 }
 function playGame() {
@@ -14,33 +13,18 @@ function playGame() {
 }
 function displayState() {
     console.log("Current Turn: Player ", activePlayer);
-    console.log("Row A:", a, "\nRow B:", b, "\nRow C:", c, "\nRow D:", d);
+    for (let i = 0; i < rows.length; i++) {
+        console.log("Row " + (i + 1) + ":", rows[i]);
+    }
 }
 function promptRowAndAmount() {
-    let row = "";
-    let amount = 0;
-    row = prompt("Select Row: ");
+    let row = 0, amount = 0;
+    row = parseInt(prompt("Select Row: "));
     amount = parseInt(prompt("Select amount: "));
     changeState(row, amount);
 }
 function changeState(_row, _amount) {
-    switch (_row) {
-        case "a":
-            a -= _amount;
-            break;
-        case "b":
-            b -= _amount;
-            break;
-        case "c":
-            c -= _amount;
-            break;
-        case "d":
-            d -= _amount;
-            break;
-        default:
-            console.log("Invalid Input");
-            break;
-    }
+    rows[_row - 1] -= _amount;
     if (activePlayer == 1) {
         activePlayer = 2;
     }
@@ -55,7 +39,11 @@ function changeState(_row, _amount) {
     }
 }
 function checkWin() {
-    return (a + b + c + d) == 1;
+    let sum = 0;
+    for (let i = 0; i < rows.length; i++) {
+        sum += rows[i];
+    }
+    return sum == 1;
 }
 function displayWinner() {
     displayState();

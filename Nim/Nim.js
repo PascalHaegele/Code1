@@ -20,7 +20,17 @@ function displayState() {
 function promptRowAndAmount() {
     let row = 0, amount = 0;
     row = parseInt(prompt("Select Row: "));
+    if (row < 1 || row > (rows.length + 1)) {
+        console.log("Invalid row.");
+        promptRowAndAmount();
+        return;
+    }
     amount = parseInt(prompt("Select amount: "));
+    if ((amount > rows[row - 1]) || (amount + 1 > sumRows())) {
+        console.log("Invalid amount.");
+        promptRowAndAmount();
+        return;
+    }
     changeState(row, amount);
 }
 function changeState(_row, _amount) {
@@ -38,12 +48,15 @@ function changeState(_row, _amount) {
         playGame();
     }
 }
-function checkWin() {
+function sumRows() {
     let sum = 0;
     for (let i = 0; i < rows.length; i++) {
         sum += rows[i];
     }
-    return sum == 1;
+    return sum;
+}
+function checkWin() {
+    return sumRows() == 1;
 }
 function displayWinner() {
     displayState();
@@ -55,3 +68,4 @@ function displayWinner() {
     }
     console.log("Player", activePlayer, "Won!");
 }
+//# sourceMappingURL=Nim.js.map

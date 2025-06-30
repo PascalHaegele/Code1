@@ -29,7 +29,18 @@ function promptRowAndAmount(): void
 	let row: number = 0, amount: number = 0;
 
 	row = parseInt(prompt("Select Row: ")!);
+	if(row < 1 || row > (rows.length + 1)) {
+		console.log("Invalid row.");
+		promptRowAndAmount();
+		return;
+	}
+
 	amount = parseInt(prompt("Select amount: ")!);
+	if((amount > rows[row - 1]) || (amount + 1 > sumRows())) {
+		console.log("Invalid amount.");
+		promptRowAndAmount();
+		return;
+	}
 
 	changeState(row, amount);
 }
@@ -45,14 +56,19 @@ function changeState(_row: number, _amount: number): void
 	else { playGame(); }
 }
 
-function checkWin(): boolean
+function sumRows(): number
 {
 	let sum: number = 0;
 
 	for(let i: number = 0; i < rows.length; i++) {
 		sum += rows[i];
 	}
-	return sum == 1;
+	return sum;
+}
+
+function checkWin(): boolean
+{
+	return sumRows() == 1;
 }
 
 function displayWinner(): void

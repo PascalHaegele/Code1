@@ -1,0 +1,41 @@
+:root {
+	--x: 0.5;
+	--y: 0.5;
+}
+
+body {
+	margin: 150px;
+	padding: 50px;
+	outline: 2px solid black;
+}
+
+div[name="div0"] {
+	float: left;
+	width: 45%;
+	height: 80%;
+	outline: 2px solid black;
+}
+
+div[name="div1"] {
+	float: right;
+	width: 45%;
+	height: 80%;
+	outline: 2px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+button {
+	width: 100px;
+	height: 50px;
+}
+
+#tooltip {
+	background-color: white;;
+	position: fixed;
+	padding: 10px;
+	max-width: 250px;
+	opacity: 1;
+	border: 1px solid black;
+}

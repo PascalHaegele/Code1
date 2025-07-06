@@ -7,12 +7,13 @@ namespace EventInspector {
 		const div0 = document.getElementsByTagName("div")[0];
 		const div1 = document.getElementsByTagName("div")[1];
 		
-		const buttonEvent: CustomEvent = new CustomEvent("buttonclick", { bubbles: true });
+		const buttonEvent: CustomEvent = new CustomEvent("clickbutton", { bubbles: true });
 		const button: HTMLButtonElement = document.getElementsByTagName("button")[0];
 		
 		document.addEventListener("mousemove", setInfoBox);
 		document.addEventListener("click", logInfo);
 		document.addEventListener("keyup", logInfo);
+		document.addEventListener("clickbutton", logInfo);
 		
 		body.addEventListener("click", logInfo);
 		body.addEventListener("keyup", logInfo);
@@ -22,8 +23,6 @@ namespace EventInspector {
 		
 		div1.addEventListener("click", logInfo);
 		div1.addEventListener("keyup", logInfo);
-		
-		document.addEventListener("buttonclick", logInfo);
 		
 		button.onclick = function(){
 			button.dispatchEvent(buttonEvent);

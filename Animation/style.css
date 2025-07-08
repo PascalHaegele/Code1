@@ -1,0 +1,11 @@
+body {
+	background-color: black;
+}
+
+span {
+	position: fixed;
+	background-color: white;
+	width: 1px;
+	height: 1px;
+	border-radius: 50%;
+}

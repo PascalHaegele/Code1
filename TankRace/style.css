@@ -1,0 +1,10 @@
+body {
+	background-color: black;
+}
+
+span {
+	background-color: white;
+	position: fixed;
+	width: 1px;
+	height: 1px;
+}
